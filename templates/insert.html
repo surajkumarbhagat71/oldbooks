@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block side %}
+    {{ block.super }}
+{% endblock %}
+{% block content %}
+<div class="col-lg-9">
+    <div class="row">
+        <div class="col-lg-6 mx-auto p-2">
+            {% if messages %}
+                {% for m in messages %}
+                <div class="{{ m.tags }}">{{ m }}</div>
+                {% endfor %}
+            {% endif %}
+            <div class="card border border-primary">
+                <div class="card-header text-secondary text-center">
+                    INSERT BOOKS
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'insert' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <table class="table text-center">
+                            {{ form }}
+                            <th colspan="2"><input type="submit" value="INSERT BOOKS" class="btn btn-block btn-primary text-white"></th>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
